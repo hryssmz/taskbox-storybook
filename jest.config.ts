@@ -157,7 +157,10 @@ const config: Config.InitialOptions = {
   //   "**/__tests__/**/*.[jt]s?(x)",
   //   "**/?(*.)+(spec|test).[tj]s?(x)"
   // ],
-  testMatch: ["<rootDir>/tests/App.spec.tsx"],
+  testMatch: [
+    "<rootDir>/tests/App.spec.tsx",
+    "<rootDir>/tests/components/*.spec.tsx",
+  ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
   // testPathIgnorePatterns: [
