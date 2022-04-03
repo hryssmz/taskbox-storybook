@@ -104,4 +104,10 @@ npm install -D eslint-plugin-storybook @storybook/testing-react
 
 ---
 
-No dependencies.
+#### 1.3.1. Redux Toolkit
+
+---
+
+```bash
+npm install @reduxjs/toolkit react-redux
+```
