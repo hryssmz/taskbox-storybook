@@ -1,5 +1,29 @@
 // lib/store.ts
-import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  configureStore,
+  createAsyncThunk,
+  createSlice,
+  PayloadAction,
+} from "@reduxjs/toolkit";
+
+interface Todo {
+  id: string;
+  title: string;
+  completed: boolean;
+}
+
+export const fetchTasks = createAsyncThunk("todos/fetchTodos", async () => {
+  const response = await fetch(
+    "https://jsonplaceholder.typicode.com/todos?userId=1"
+  );
+  const data: Todo[] = await response.json();
+  const result: Task[] = data.map(task => ({
+    id: task.id,
+    title: task.title,
+    state: task.completed ? "TASK_ARCHIVED" : "TASK_INBOX",
+  }));
+  return result;
+});
 
 const defaultTasks: Task[] = [
   { id: "1", title: "Something", state: "TASK_INBOX" },
@@ -10,7 +34,7 @@ const defaultTasks: Task[] = [
 
 export interface TasksState {
   tasks: Task[];
-  status: "idle" | "loading";
+  status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
 }
 
@@ -36,6 +60,25 @@ const tasksSlice = createSlice({
         state.tasks[task].state = newTaskState;
       }
     },
+  },
+  extraReducers(builder) {
+    builder
+      .addCase(fetchTasks.pending, state => {
+        state.status = "loading";
+        state.error = null;
+        state.tasks = [];
+      })
+      .addCase(fetchTasks.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.error = null;
+        // Add any fetched tasks to the array
+        state.tasks = action.payload;
+      })
+      .addCase(fetchTasks.rejected, state => {
+        state.status = "failed";
+        state.error = "Something went wrong";
+        state.tasks = [];
+      });
   },
 });
 

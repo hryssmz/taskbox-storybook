@@ -88,7 +88,7 @@ npm install -D @testing-library/react@12 @testing-library/jest-dom @testing-libr
 ---
 
 ```bash
-npm install -D msw
+npm install -D msw@^0.36.0
 ```
 
 #### 1.2.10. Storybook
@@ -97,7 +97,7 @@ npm install -D msw
 
 ```bash
 npx sb init --builder storybook-builder-vite
-npm install -D eslint-plugin-storybook @storybook/testing-react
+npm install -D eslint-plugin-storybook @storybook/testing-react msw-storybook-addon
 ```
 
 ### 1.3. Dependencies
