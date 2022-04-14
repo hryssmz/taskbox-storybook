@@ -12,7 +12,8 @@
     "test": "jest -o -i --coverage=false",
     "testEach": "sh ./scripts/test-each-component.sh",
     "testAll": "jest -i",
-    "lint": "tsc --noEmit && eslint --max-warnings=0 ."
+    "lint": "tsc --noEmit && eslint --max-warnings=0 .",
+    "chromatic": "npx chromatic --project-token=7eda4d4358df"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",
@@ -42,6 +43,7 @@
     "@vitejs/plugin-react": "^1.0.7",
     "babel-jest": "^27.5.1",
     "babel-loader": "^8.2.4",
+    "chromatic": "^6.5.4",
     "eslint": "^8.12.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-import-resolver-webpack": "^0.13.2",

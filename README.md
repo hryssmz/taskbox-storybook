@@ -97,7 +97,7 @@ npm install -D msw@^0.36.0
 
 ```bash
 npx sb init --builder storybook-builder-vite
-npm install -D eslint-plugin-storybook @storybook/testing-react msw-storybook-addon
+npm install -D eslint-plugin-storybook @storybook/testing-react msw-storybook-addon chromatic
 ```
 
 ### 1.3. Dependencies
